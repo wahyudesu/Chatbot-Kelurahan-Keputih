@@ -1,0 +1,6 @@
+requests
+python-telegram-bot
+pandas
+sentence-transformers
+scikit-learn
+python-dotenv
