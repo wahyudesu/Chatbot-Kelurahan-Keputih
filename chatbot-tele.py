@@ -72,47 +72,59 @@ def send_menu(message):
 ])
 def handle_category(message):
     category = message.text
+    markup = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+    
     if category == "🧑‍🤝‍🧑 Dokumen Kependudukan":
         menu_text = (
-            "🔹 *Silahkan Pilih Layanan untuk Dokumen Kependudukan:* 🔹\n"
-            "1. 📝 Pemutahiran Biodata\n"
-            "2. 📄 Pecah Kartu Keluarga\n"
-            "3. 🆘 Cetak Kartu Keluarga Karena Hilang\n"
-            "4. 🏠 Pelayanan Pindah Datang\n"
-            "5. 🏡 Pemutahiran Biodata Keluarga"
+            "🔹 *Silahkan Pilih Layanan untuk Dokumen Kependudukan:* 🔹"
         )
+        btn1 = KeyboardButton("📝 Pemutahiran Biodata")
+        btn2 = KeyboardButton("📄 Pecah Kartu Keluarga")
+        btn3 = KeyboardButton("🆘 Cetak Kartu Keluarga Karena Hilang")
+        btn4 = KeyboardButton("🏠 Pelayanan Pindah Datang")
+        btn5 = KeyboardButton("🏡 Pemutahiran Biodata Keluarga")
+        markup.add(btn1, btn2, btn3, btn4, btn5)
+    
     elif category == "👶 Dokumen Kelahiran":
         menu_text = (
-            "🔹 *Silahkan Pilih Layanan untuk Dokumen Kelahiran:* 🔹\n"
-            "1. 📝 Permohonan Akta Kelahiran\n"
-            "2. 👶 Akta Kelahiran Bayi Baru Lahir\n"
-            "3. 📄 Akta Hilang atau Rusak\n"
-            "4. ✍️ Perubahan Nama Akta Kelahiran\n"
-            "5. 📑 Salinan Akta Kelahiran"
+            "🔹 *Silahkan Pilih Layanan untuk Dokumen Kelahiran:* 🔹"
         )
+        btn1 = KeyboardButton("📝 Permohonan Akta Kelahiran")
+        btn2 = KeyboardButton("👶 Akta Kelahiran Bayi Baru Lahir")
+        btn3 = KeyboardButton("📄 Akta Hilang atau Rusak")
+        btn4 = KeyboardButton("✍️ Perubahan Nama Akta Kelahiran")
+        btn5 = KeyboardButton("📑 Salinan Akta Kelahiran")
+        markup.add(btn1, btn2, btn3, btn4, btn5)
+    
     elif category == "💍 Dokumen Pernikahan":
         menu_text = (
-            "🔹 *Silahkan Pilih Layanan untuk Dokumen Pernikahan:* 🔹\n"
-            "1. 💍 Surat Pengantar Nikah\n"
-            "2. 💌 Surat Pernyataan Belum Pernah Menikah\n"
-            "3. 📝 Permohonan Akta Perkawinan\n"
-            "4. 🌏 Pelaporan Peristiwa Perkawinan di Luar Negeri"
+            "🔹 *Silahkan Pilih Layanan untuk Dokumen Pernikahan:* 🔹"
         )
+        btn1 = KeyboardButton("💍 Surat Pengantar Nikah")
+        btn2 = KeyboardButton("💌 Surat Pernyataan Belum Pernah Menikah")
+        btn3 = KeyboardButton("📝 Permohonan Akta Perkawinan")
+        btn4 = KeyboardButton("🌏 Pelaporan Peristiwa Perkawinan di Luar Negeri")
+        markup.add(btn1, btn2, btn3, btn4)
+    
     elif category == "⚰️ Dokumen Kematian":
         menu_text = (
-            "🔹 *Silahkan Pilih Layanan untuk Dokumen Kematian:* 🔹\n"
-            "1. 📝 Permohonan Akta Kematian\n"
-            "2. ⚰️ Akta Kematian Baru\n"
-            "3. 📄 Akta Kematian Hilang atau Rusak\n"
-            "4. 🧑‍⚖️ Surat Keterangan Ahli Waris"
+            "🔹 *Silahkan Pilih Layanan untuk Dokumen Kematian:* 🔹"
         )
+        btn1 = KeyboardButton("📝 Permohonan Akta Kematian")
+        btn2 = KeyboardButton("⚰️ Akta Kematian Baru")
+        btn3 = KeyboardButton("📄 Akta Kematian Hilang atau Rusak")
+        btn4 = KeyboardButton("🧑‍⚖️ Surat Keterangan Ahli Waris")
+        markup.add(btn1, btn2, btn3, btn4)
+    
     elif category == "📑 Lainnya":
         menu_text = "💬 *Silakan ketik pertanyaan Anda:*"
+        markup = None  # Tidak memerlukan tombol untuk kategori ini
+    
     else:
         menu_text = "❌ *Pilihan tidak valid.*"
-
-    bot.reply_to(message, menu_text, parse_mode="Markdown")
-
+        markup = None  # Tidak memerlukan tombol untuk kategori ini
+    
+    bot.reply_to(message, menu_text, reply_markup=markup, parse_mode="Markdown")
 
 # Retrieval message
 @bot.message_handler(func=lambda message: True)

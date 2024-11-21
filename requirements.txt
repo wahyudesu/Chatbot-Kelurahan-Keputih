@@ -4,3 +4,5 @@ pandas
 sentence-transformers
 scikit-learn
 python-dotenv
+openpyxl
+pyTelegramBotAPI
